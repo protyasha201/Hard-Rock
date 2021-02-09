@@ -1,10 +1,10 @@
 const search = document.getElementById("search");
 search.addEventListener("click", () => {
     const searchText = document.getElementById("search-field").value;
-    fetch(`https://api.lyrics.ovh/suggests/${searchText}`)
+    fetch(`https://api.lyrics.ovh/suggest/${searchText}`)
         .then(res => res.json())
         .then(data => displaySongs(data.data))
-        .catch(error => displayError(error))
+        .catch(error => displayError("Something went wrong.Please try again later!"))
 })
 
 const displaySongs = songs => {
