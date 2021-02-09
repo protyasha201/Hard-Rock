@@ -1,9 +1,10 @@
 const search = document.getElementById("search");
 search.addEventListener("click", () => {
     const searchText = document.getElementById("search-field").value;
-    fetch(`https://api.lyrics.ovh/suggest/${searchText}`)
+    fetch(`https://api.lyrics.ovh/suggests/${searchText}`)
         .then(res => res.json())
         .then(data => displaySongs(data.data))
+        .catch(error => displayError(error))
 })
 
 const displaySongs = songs => {
@@ -29,13 +30,17 @@ const displaySongs = songs => {
 }
 
 function displayLyric(artist, title) {
-    const url = `https://api.lyrics.ovh/v1/${artist}/${title}`;
-    fetch(url)
+    fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`)
         .then(res => res.json())
-        .then(data => getLyric(data.lyrics))
+        .then(data => getLyrics(data.lyrics))
 }
 
 const getLyrics = lyrics => {
     const lyricsDiv = document.getElementById("song-lyrics");
     lyricsDiv.innerText = lyrics;
+}
+
+const displayError = error => {
+    const errorMessage = document.getElementById("errorMessage");
+    errorMessage.innerText = error;
 }
