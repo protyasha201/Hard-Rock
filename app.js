@@ -44,3 +44,14 @@ const displayError = error => {
     const errorMessage = document.getElementById("errorMessage");
     errorMessage.innerText = error;
 }
+
+//another way to catch error
+
+// try{
+//     fetch(url);
+//     .then()
+//     .then()
+// }
+// catch(error){
+
+// }
